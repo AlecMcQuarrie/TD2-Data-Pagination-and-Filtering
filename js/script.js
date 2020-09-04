@@ -5,14 +5,13 @@ FSJS Project 2 - Data Pagination and Filtering
 
 //Declaring variables in the global scope
 let studentList = document.getElementById('student-list');
-let listItem = document.createElement('li');
 let buttonAmount = Math.ceil(data.length / 9);
 let buttonUl = document.getElementById('button-list');
 
 
-//Search function
-function search() {
-   
+//Filter Search Results Function
+function filterResults(searchValue) {
+   console.log(searchValue);
 }
 
 
@@ -23,6 +22,8 @@ function showPage(page) {
 
    //Dynamic for loop that shows only the students that should show up on the current page
    for (let i = (page-1) * 9; i < ((page*9)); i++) {
+      let listItem = document.createElement('li');
+
       listItem.classList.add('student-item', 'cf');
 
       listItem.innerHTML = `
@@ -89,7 +90,12 @@ searchLabel.innerHTML = `
                            <button type="button"><img src="img/icn-search.svg" alt="Search icon"></button>
                         `;
 
+
+
 let searchButton = searchLabel.lastElementChild;
-searchButton.addEventListener('click', search());
+searchButton.addEventListener('click', () => {
+   let valueOfSearch = document.getElementById('search');
+   filterResults(valueOfSearch.value);
+});
 
 document.querySelector('header').appendChild(searchLabel);
